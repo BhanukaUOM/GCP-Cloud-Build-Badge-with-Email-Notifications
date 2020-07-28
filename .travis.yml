@@ -1,0 +1,15 @@
+language: python
+python: 3.8
+warnings_are_errors: true
+
+install:
+  - echo "Installing Dependencies"
+  - pip install -r requirements.txt
+  - pip install -r tests/requirements.txt
+
+script:
+  - echo "CI Starting for $BRANCH"
+  - python -m pytest -W ignore::DeprecationWarning -v
+
+after_success:
+  - echo "CI Successfully"

@@ -1,17 +1,17 @@
-# cloud-build-badge
+# GCP-Cloud-Build-Badge-with-Email-Notifications
 
-![cloud build status](https://storage.googleapis.com/automatize-ci-badges/builds/cloud-build-badge/branches/master.svg)
+[![Build Status](https://travis-ci.com/BhanukaUOM/GCP-Cloud-Build-Badge-with-Email-Notifications.svg?branch=master)](https://travis-ci.com/BhanukaUOM/GCP-Cloud-Build-Badge-with-Email-Notifications)
 
 Embed a badge in your repository's `README` that reflects the status of the latest build in Cloud Build:
 
-* ![](./badges/queued.svg)
-* ![](./badges/working.svg)
-* ![](./badges/success.svg)
-* ![](./badges/timeout.svg)
-* ![](./badges/cancelled.svg)
-* ![](./badges/failure.svg)
-* ![](./badges/internal_error.svg)
-* ![](./badges/status_unknown.svg)
+- ![](./badges/queued.svg)
+- ![](./badges/working.svg)
+- ![](./badges/success.svg)
+- ![](./badges/timeout.svg)
+- ![](./badges/cancelled.svg)
+- ![](./badges/failure.svg)
+- ![](./badges/internal_error.svg)
+- ![](./badges/status_unknown.svg)
 
 ## Summary
 
@@ -23,11 +23,10 @@ It's assumed you've already integrated your repository with Cloud Build. If not,
 
 The function supports the following integrations:
 
-* Cloud Build Github App
-* Github (mirrored)
-* Bitbucket Cloud (mirrored)
-* Cloud Source Repositories
-
+- Cloud Build Github App
+- Github (mirrored)
+- Bitbucket Cloud (mirrored)
+- Cloud Source Repositories
 
 ### Upload Badges
 
@@ -112,6 +111,6 @@ make integration
 
 Ensure the following environment variables are set first:
 
-* `BADGES_BUCKET`: the name of the bucket containing the badges
+- `BADGES_BUCKET`: the name of the bucket containing the badges
 
 You'll also need to install [jq](https://stedolan.github.io/jq/) and [xq](https://github.com/jeffbr13/xq).
