@@ -106,7 +106,7 @@ gcloud functions deploy cloud-build-badge \
     --set-env-vars BADGES_BUCKET=${GOOGLE_CLOUD_PROJECT}-badges,TEMPLATE_PATH='builds/${repo}/branches/${branch}.svg',SENDGRID_API_KEY=${SENDGRID_API_KEY},SENDER_EMAIL_ADDRESS=${SENDER_EMAIL_ADDRESS},RECEIVER_EMAIL_ADDRESS=${RECEIVER_EMAIL_ADDRESS}
 ```
 
-## Use
+## Usage
 
 Embed the badge in your README, replacing `${repo}` and `${branch}` with the name of your repository and the branch you want to show the latest status for:
 
