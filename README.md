@@ -1,4 +1,4 @@
-# GCP-Cloud-Build-Badge-with-Email-Notifications
+# GCP Cloud Build Badge with Email Notifications
 
 [![Build Status](https://travis-ci.com/BhanukaUOM/GCP-Cloud-Build-Badge-with-Email-Notifications.svg?branch=master)](https://travis-ci.com/BhanukaUOM/GCP-Cloud-Build-Badge-with-Email-Notifications)
 
@@ -17,9 +17,14 @@ Embed a badge in your repository's `README` that reflects the status of the late
 
 Deploy a Google Cloud Function to auto-update your repository's badge. The function subscribes to events published by Cloud Build. The events contain information on the status of the progress and completion of a build. The function copies a badge reflecting that status to a known URL, which can be hard-coded in a repository `README`.
 
-## Installation
+## Prerequests:
+
+- [Cloud Build Repository](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
+- [SendGrid Account](https://sendgrid.com)
 
 It's assumed you've already integrated your repository with Cloud Build. If not, the instructions for doing so are [here](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds).
+
+## Supported Integrations
 
 The function supports the following integrations:
 
@@ -27,6 +32,18 @@ The function supports the following integrations:
 - Github (mirrored)
 - Bitbucket Cloud (mirrored)
 - Cloud Source Repositories
+
+## Quick Installation with Pre-defined Configs
+
+```bash
+python3 deploy.py  \
+  --google_cloud_project ${GOOGLE_CLOUD_PROJECT} \
+  --sendgrid_api_key ${RECEIVER_EMAIL_SENDGRID_API_KEYADDRESS} \
+  --sender_email_address ${SENDER_EMAIL_ADDRESS} \
+  --receiver_email_address ${RECEIVER_EMAIL_ADDRESS}
+```
+
+## Custom Installation
 
 ### Upload Badges
 
@@ -65,7 +82,7 @@ Grant permissions to read and write to the bucket:
 gsutil iam ch serviceAccount:cloud-build-badge@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com:legacyObjectReader,legacyBucketWriter gs://${GOOGLE_CLOUD_PROJECT}-badges/
 ```
 
-## Customise Path
+### Customise Path
 
 You can customise the path in the bucket at which the badge gets published, using a template string. The default is:
 
@@ -75,7 +92,7 @@ Where `${repo}` and `${branch}` refer to the name of the repository and branch t
 
 Set the environment variable `TEMPLATE_PATH` accordingly when deploying the function in the next step.
 
-## Deploy
+### Deploy
 
 Deploy the function:
 
@@ -86,7 +103,7 @@ gcloud functions deploy cloud-build-badge \
     --entry-point build_badge \
     --service-account cloud-build-badge@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com \
     --trigger-topic=cloud-builds \
-    --set-env-vars BADGES_BUCKET=${GOOGLE_CLOUD_PROJECT}-badges,TEMPLATE_PATH='builds/${repo}/branches/${branch}.svg'
+    --set-env-vars BADGES_BUCKET=${GOOGLE_CLOUD_PROJECT}-badges,TEMPLATE_PATH='builds/${repo}/branches/${branch}.svg',SENDGRID_API_KEY=${SENDGRID_API_KEY},SENDER_EMAIL_ADDRESS=${SENDER_EMAIL_ADDRESS},RECEIVER_EMAIL_ADDRESS=${RECEIVER_EMAIL_ADDRESS}
 ```
 
 ## Use

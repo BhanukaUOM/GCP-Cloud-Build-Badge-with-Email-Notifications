@@ -1,3 +1,6 @@
+# VS Code
+.vscode/
+
 # direnv
 .envrc
 .direnv
@@ -106,3 +109,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+Pipfile.lock

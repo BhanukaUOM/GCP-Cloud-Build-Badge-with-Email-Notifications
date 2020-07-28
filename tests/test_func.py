@@ -50,8 +50,8 @@ def github_app():
     return {
         "status": "SUCCESS",
         "substitutions": {
-              "REPO_NAME": "webapp",
-              "BRANCH_NAME": "feature/fish"
+            "REPO_NAME": "webapp",
+            "BRANCH_NAME": "feature/fish"
         }
     }
 
@@ -72,38 +72,38 @@ def patches(mocker):
 
 
 def test_mirrored_repo(mirrored_repo, badges_bucket, patches):
-    main.build_badge(mirrored_repo, None)
+    main.build_badge(mirrored_repo, None, True)
 
     main.copy_badge.assert_called_once_with(
-            'my-badges-bucket',
-            'badges/success.svg',
-            'builds/webapp/branches/feature/fish.svg')
+        'my-badges-bucket',
+        'badges/success.svg',
+        'builds/webapp/branches/feature/fish.svg')
 
 
 def test_github_app(github_app, badges_bucket, patches):
-    main.build_badge(github_app, None)
+    main.build_badge(github_app, None, True)
 
     main.copy_badge.assert_called_once_with(
-            'my-badges-bucket',
-            'badges/success.svg',
-            'builds/webapp/branches/feature/fish.svg')
+        'my-badges-bucket',
+        'badges/success.svg',
+        'builds/webapp/branches/feature/fish.svg')
 
 
 def test_cloud_source_repo(cloud_source_repo, badges_bucket, patches):
-    main.build_badge(cloud_source_repo, None)
+    main.build_badge(cloud_source_repo, None, True)
 
     main.copy_badge.assert_called_once_with(
-            'my-badges-bucket',
-            'badges/working.svg',
-            'builds/webapp/branches/master.svg')
+        'my-badges-bucket',
+        'badges/working.svg',
+        'builds/webapp/branches/master.svg')
 
 
 def test_custom_template_path(cloud_source_repo, badges_bucket,
-        custom_template_path, patches):
+                              custom_template_path, patches):
 
-    main.build_badge(cloud_source_repo, None)
+    main.build_badge(cloud_source_repo, None, True)
 
     main.copy_badge.assert_called_once_with(
-            'my-badges-bucket',
-            'badges/working.svg',
-            'builds/webapp-master.svg')
+        'my-badges-bucket',
+        'badges/working.svg',
+        'builds/webapp-master.svg')
