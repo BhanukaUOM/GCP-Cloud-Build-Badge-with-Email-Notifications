@@ -38,7 +38,7 @@ The function supports the following integrations:
 ```bash
 python3 deploy.py  \
   --google_cloud_project ${GOOGLE_CLOUD_PROJECT} \
-  --sendgrid_api_key ${RECEIVER_EMAIL_SENDGRID_API_KEYADDRESS} \
+  --sendgrid_api_key ${SENDGRID_API_KEY} \
   --sender_email_address ${SENDER_EMAIL_ADDRESS} \
   --receiver_email_address ${RECEIVER_EMAIL_ADDRESS}
 ```
